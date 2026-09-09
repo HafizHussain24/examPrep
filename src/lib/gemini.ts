@@ -1,5 +1,4 @@
 export const extractJsonFromText = (text: string): string => {
-  // Sometimes Gemini wraps JSON in ```json ... ``` or just ``` ... ```
   let cleanText = text.trim();
   if (cleanText.startsWith('```json')) {
     cleanText = cleanText.substring(7);
@@ -26,7 +25,6 @@ export const callGeminiAPI = async (prompt: string, imageBase64?: string, isJson
   const parts: any[] = [{ text: prompt }];
 
   if (imageBase64) {
-    // Expecting imageBase64 to be in format "data:image/jpeg;base64,..."
     const [header, base64Data] = imageBase64.split(',');
     const mimeType = header.split(':')[1].split(';')[0];
     
